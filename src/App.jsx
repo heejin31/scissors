@@ -1,6 +1,6 @@
-import React, { useState } from 'react'; //상태를 관리할때 사용하는 hook중 하나 (useState)
-import './App.css';
-import Box from './conponents/Box';
+import React, { useState } from "react"; //상태를 관리할때 사용하는 hook중 하나 (useState)
+import "./App.css";
+import Box from "./conponents/Box";
 
 /*
 
@@ -14,29 +14,29 @@ import Box from './conponents/Box';
 */
 
 function App() {
-  const [ userSelect, setUserSelect ] = useState(); //내가 선택한것
-  const [ computerSelect, setComputerSelect ] = useState(null); // 컴퓨터가 선택한것
-  const [ result, setResult ] = useState(''); // 승패결과를 보여주는 state, 비어있는 string type
-  
+  const [userSelect, setUserSelect] = useState(); //내가 선택한것
+  const [computerSelect, setComputerSelect] = useState(null); // 컴퓨터가 선택한것
+  const [result, setResult] = useState(""); // 승패결과를 보여주는 state, 비어있는 string type
+
   const choice = {
-    scissors:{name:'Scissors', img:'scissors.png'},
-    rock:{name:'Rock', img:'rock.png'},
-    paper:{name:'Paper', img:'paper.png'}
-  }
+    scissors: { name: "Scissors", img: "scissors.png" },
+    rock: { name: "Rock", img: "rock.png" },
+    paper: { name: "Paper", img: "paper.png" },
+  };
 
   const play = (userChoice) => {
-    //console.log('내가 선택한 버튼은?!',userChice)    
-    
+    //console.log('내가 선택한 버튼은?!',userChice)
+
     setUserSelect(choice[userChoice]);
     let computerChoice = randomChoice();
     setComputerSelect(computerChoice);
 
-    //유저가 선택한값, 컴퓨터가 선택한값을 함수 judgement    
-    setResult(judgement(choice[userChoice],computerChoice));  
-  }
+    //유저가 선택한값, 컴퓨터가 선택한값을 함수 judgement
+    setResult(judgement(choice[userChoice], computerChoice));
+  };
 
   const judgement = (uc, cc) => {
-    console.log('유저 선택값-', uc, '컴퓨터 선택값-',cc );
+    console.log("유저 선택값-", uc, "컴퓨터 선택값-", cc);
 
     /*
     유저 == 컴퓨터   -->  tie(비김)
@@ -49,42 +49,40 @@ function App() {
     
     */
 
-    if(uc.name == cc.name){
-      return 'tie';
-    } else if (uc.name == 'Rock')
+    if (uc.name === cc.name) {
+      return "tie";
+    } else if (uc.name === "Rock")
       // if(cc.name == 'Scissors'){
       //   return '승리!';
       // } else {
       //   return '졌어요ㅠㅠ'
       // }
-      return cc.name == 'Scissors' ? 'win': 'lose';
-      else if (uc.name == 'Scissors') return cc.name == 'Paper' ? 'win': 'lose';
-      else if (uc.name == 'Paper') return cc.name == 'Rock' ? 'win': 'lose';
-        
-    } 
-  
+      return cc.name === "Scissors" ? "win" : "lose";
+    else if (uc.name === "Scissors")
+      return cc.name === "Paper" ? "win" : "lose";
+    else if (uc.name === "Paper") return cc.name === "Rock" ? "win" : "lose";
+  };
 
   const randomChoice = () => {
-    let itemArray = Object.keys(choice);  //객체 choice오브젝트의 key값만 뽑아tj Array됨(scissors,rock,paper)
+    let itemArray = Object.keys(choice); //객체 choice오브젝트의 key값만 뽑아tj Array됨(scissors,rock,paper)
     let randomItem = Math.floor(Math.random() * itemArray.length); //0,1,2 중 랜덤
-    let final = itemArray[randomItem];   
-    
-    return choice[final];   
-  }
-  
+    let final = itemArray[randomItem];
+
+    return choice[final];
+  };
 
   return (
     <>
-      <div className='main'>
-        <Box title='Mine' item={userSelect} result={result} />
-        <Box title='Computer' item={computerSelect} result={result} />
+      <div className="main">
+        <Box title="Mine" item={userSelect} result={result} />
+        <Box title="Computer" item={computerSelect} result={result} />
       </div>
-      <div className='main'>
-        <button onClick={()=>play('scissors')}>가위</button>
-        <button onClick={()=>play('rock')}>바위</button>
-        <button onClick={()=>play('paper')}>보</button>       
+      <div className="main">
+        <button onClick={() => play("scissors")}>가위</button>
+        <button onClick={() => play("rock")}>바위</button>
+        <button onClick={() => play("paper")}>보</button>
       </div>
-      <p className='main resultP'>{result}</p>
+      <p className="main resultP">{result}</p>
     </>
   );
 }

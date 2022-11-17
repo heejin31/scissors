@@ -1,0 +1,36 @@
+.box {
+  width: 500px;
+  height: 650px;
+  border: 10px solid #ccc;
+  margin: 10px;
+  text-align: center; 
+}
+
+.item-img {
+  max-width:80% ;   /* 박스가 작아져도 거기에 맞춰서 크기가 줄어들도록 함, 크기는 박스의 항상 80%임*/
+}
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.win{
+  border: 10px solid rgba(19, 159, 9, 0.8);
+  color:rgba(19, 159, 9, 0.8);
+}
+.lose{
+  border: 10px solid gray;
+  color:gray;
+}
+.tie{
+  border: 10px solid #000;
+  color: #000;
+}
+
+.resultP {
+  font-size: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: red;
+
+}
